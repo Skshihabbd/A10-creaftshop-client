@@ -1,66 +1,71 @@
 import Swal from "sweetalert2";
 import Navbar from "../../sharedcomponent/navbar/Navbar";
-import {  useState } from "react";
+import { useState } from "react";
 
 import Footer from "../../sharedcomponent/footer/Footer";
 import TiTleMenu from "../../sharedcomponent/menu title/TiTleMenu";
 import { useLoaderData } from "react-router-dom";
 const UpdateUser = () => {
+  const userUpdate = useLoaderData();
+  console.log(userUpdate);
 
-const userUpdate=useLoaderData()
-   console.log(userUpdate)
+  const { _id, name } = userUpdate;
 
-    const{_id ,
-          name
-        }=userUpdate
-    
-const [  categories ,setdata]=useState()
-const[customize,setnewData]=useState()
-const[stocks,setStocks]=useState()
-const newdatasubmit=(e)=>{
-    setnewData(e.target.value)
-}
+  const [categories, setdata] = useState();
+  const [customize, setnewData] = useState();
+  const [stocks, setStocks] = useState();
+  const newdatasubmit = (e) => {
+    setnewData(e.target.value);
+  };
 
-const handlestock=(e)=>{
-setStocks(e.target.value)
-}
+  const handlestock = (e) => {
+    setStocks(e.target.value);
+  };
 
-const newsubmit=(e)=> {
-const data=e.target.value 
-console.log(data)
-setdata(data)
-}
+  const newsubmit = (e) => {
+    const data = e.target.value;
+    console.log(data);
+    setdata(data);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const form = event.target;
-    console.log(form)
+    console.log(form);
     const name = form.names.value;
     const rating = form.rating.value;
     const price = form.price.value;
     const processingtime = form.processingtime.value;
-    
+
     const details = form.details.value;
     const photourl = form.photourl.value;
-    // const username=form.username.value 
+    // const username=form.username.value
     // const useremail=form.useremail.value
- 
-    console.log(name,rating,categories,price, processingtime, stocks, details, photourl);
+
+    console.log(
+      name,
+      rating,
+      categories,
+      price,
+      processingtime,
+      stocks,
+      details,
+      photourl
+    );
     const craftinfo = {
       name,
       rating,
-     price,
+      price,
       processingtime,
       stocks,
       details,
       photourl,
       categories,
-     customize
-      
+      customize,
     };
     console.log(craftinfo);
-    fetch(`http://localhost:5020/usersenddata/${_id}`, {
+    fetch(`https://server-site-wine.vercel.app/usersenddata/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +81,7 @@ setdata(data)
             icon: "success",
             confirmButtonText: "Cool",
           });
-          form.reset()
+          form.reset();
         }
       });
   };
@@ -87,7 +92,9 @@ setdata(data)
         <TiTleMenu></TiTleMenu>
       </div>
       <div className="bg-[#F4F3F0]  ">
-        <h1 className="text-center mb-10 text-3xl">Add User data to DataBase</h1>
+        <h1 className="text-center mb-10 text-3xl">
+          Add User data to DataBase
+        </h1>
         <p className="text-center w-4/6 mx-auto">
           It is a long established fact that a reader will be distraceted by the
           readable content of a page when looking at its layout. The point of
@@ -103,13 +110,13 @@ setdata(data)
               <div className="grid grid-cols-6  gap-10 col-span-full  lg:col-span-full">
                 <div className="col-span-full sm:col-span-3">
                   <label htmlFor="firstnames" className="text-sm">
-                  item_name
+                    item_name
                   </label>
                   <input
                     id="firstnames"
                     type="text"
                     name="names"
-                   defaultValue={name}
+                    defaultValue={name}
                     placeholder="Enter craft name"
                     className="w-full h-full  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   />
@@ -145,10 +152,9 @@ setdata(data)
                 </div> */}
                 <div className="col-span-full sm:col-span-3">
                   <label htmlFor="lastname" className="text-sm">
-                  price
+                    price
                   </label>
 
-                  
                   <input
                     id="lastname"
                     type="number"
@@ -159,7 +165,7 @@ setdata(data)
                 </div>
                 <div className="col-span-full sm:col-span-3 ">
                   <label htmlFor="email" className="text-sm">
-                  rating
+                    rating
                   </label>
                   <input
                     id="email"
@@ -171,9 +177,9 @@ setdata(data)
                 </div>
                 <div className="col-span-full sm:col-span-3 ">
                   <label htmlFor="email" className="text-sm">
-                  processing_time
+                    processing_time
                   </label>
-                 
+
                   <input
                     id="email"
                     type="number"
@@ -183,25 +189,24 @@ setdata(data)
                   />
                 </div>
                 <div className="col-span-full sm:col-span-3 ">
-                <select onChange={handlestock}  required  className="select select-primary w-full max-w-xs">
-                 
-                 <option  disabled selected>
-                 stockStatus
-                 </option> 
-                 <option value={'In stock'} >
-                 - In stock
-                 </option> 
-                 <option value={'Made to Order'}>
-                 Made to Order
-                 </option> 
-                 </select>
+                  <select
+                    onChange={handlestock}
+                    required
+                    className="select select-primary w-full max-w-xs"
+                  >
+                    <option disabled selected>
+                      stockStatus
+                    </option>
+                    <option value={"In stock"}>- In stock</option>
+                    <option value={"Made to Order"}>Made to Order</option>
+                  </select>
                 </div>
                 <div className="col-span-full sm:col-span-3 ">
                   <label htmlFor="email" className="text-sm">
-                  short description
+                    short description
                   </label>
                   <input
-                  required
+                    required
                     id="email"
                     type="text"
                     name="details"
@@ -222,46 +227,45 @@ setdata(data)
                   />
                 </div>
                 <div className="col-span-full sm:col-span-3  ">
-                 
-                  <select onChange={newsubmit}   className="select select-primary w-full max-w-xs">
-                 
-                 <option disabled selected>
-Select a Category
-                 </option>
-                 <option value={'CardMaking'}>Card Making</option>
-                 <option value={'Scrapbooking'}>Scrapbooking</option>
-                 <option value={'PaperQuillingorigami'}>Paper Quilling & origami</option>
-                 <option value={"GlassPainting"}>Glass Painting</option>
-                 <option value={"Lampworking"}>Lampworking</option>
-                 <option value={"GlassDyingStaining"}>Glass Dying & Staining</option>
-               </select>
+                  <select
+                    onChange={newsubmit}
+                    className="select select-primary w-full max-w-xs"
+                  >
+                    <option disabled selected>
+                      Select a Category
+                    </option>
+                    <option value={"CardMaking"}>Card Making</option>
+                    <option value={"Scrapbooking"}>Scrapbooking</option>
+                    <option value={"PaperQuillingorigami"}>
+                      Paper Quilling & origami
+                    </option>
+                    <option value={"GlassPainting"}>Glass Painting</option>
+                    <option value={"Lampworking"}>Lampworking</option>
+                    <option value={"GlassDyingStaining"}>
+                      Glass Dying & Staining
+                    </option>
+                  </select>
                 </div>
                 <div className="col-span-full  ">
-                 
                   <div className="col-span-full">
-                <select onChange={newdatasubmit} required    className="select select-primary w-full max-w-xs">
-                 
-                 <option  disabled selected>
-customization
-                 </option> 
-                 <option value={'yes'} >
-Yes
-                 </option> 
-                 <option value={'no'}>
-No
-                 </option> 
-                 </select>
+                    <select
+                      onChange={newdatasubmit}
+                      required
+                      className="select select-primary w-full max-w-xs"
+                    >
+                      <option disabled selected>
+                        customization
+                      </option>
+                      <option value={"yes"}>Yes</option>
+                      <option value={"no"}>No</option>
+                    </select>
+                  </div>
                 </div>
-                </div>
-               
-                
               </div>
             </fieldset>
             <button className="btn btn-block bg-black text-yellow-500">
               Add Coffee
             </button>
-
-           
           </form>
         </section>
       </div>

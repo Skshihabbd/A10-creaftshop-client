@@ -28,21 +28,28 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader:()=>fetch('http://localhost:5020/adminsenddata'),
+        loader: () =>
+          fetch("https://server-site-wine.vercel.app/adminsenddata"),
       },
       {
         path: "/homecard",
         element: <Homecard></Homecard>,
-       
       },
       {
         path: "/homepost",
         element: <HomepostData></HomepostData>,
       },
       {
-        path:'/cardview/:id',
-        element:<Cradviewdetailsmake></Cradviewdetailsmake>,
-        loader:({params})=>fetch(`http://localhost:5020/usersenddata/${params.id}`)
+        path: "/cardview/:id",
+        element: (
+          <PrivetRoute>
+            <Cradviewdetailsmake></Cradviewdetailsmake>
+          </PrivetRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://server-site-wine.vercel.app/usersenddata/${params.id}`
+          ),
       },
 
       {
@@ -56,28 +63,36 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <UpdateUser></UpdateUser>,
-        loader:({params})=>fetch(`http://localhost:5020/usersenddata/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://server-site-wine.vercel.app/usersenddata/${params.id}`
+          ),
       },
       {
         path: "/useradddata",
         element: <UserAddData></UserAddData>,
       },
       {
-        path:"/allart",
-        element:<Allartandcraft></Allartandcraft>,
-        loader: ()=>fetch("http://localhost:5020/usersenddata")
+        path: "/allart",
+        element: <Allartandcraft></Allartandcraft>,
+        loader: () => fetch("https://server-site-wine.vercel.app/usersenddata"),
       },
       {
-        path:"/myarts",
-        element:<PrivetRoute>
-          <MyartsandCraftList></MyartsandCraftList>
-        </PrivetRoute>
+        path: "/myarts",
+        element: (
+          <PrivetRoute>
+            <MyartsandCraftList></MyartsandCraftList>
+          </PrivetRoute>
+        ),
       },
       {
-        path:'/allcategory/:categori',
-        element:<Allcategory></Allcategory>,
-        loader:({params})=>fetch(`http://localhost:5020/adminsendcollection?category=${params.categori}`)
-      }
+        path: "/allcategory/:categori",
+        element: <Allcategory></Allcategory>,
+        loader: ({ params }) =>
+          fetch(
+            `https://server-site-wine.vercel.app/adminsendcollection?category=${params.categori}`
+          ),
+      },
     ],
   },
 ]);

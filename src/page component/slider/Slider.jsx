@@ -33,7 +33,7 @@ const Slider = () => {
           <SwiperSlide className="">
             <div className="bg-cover bg-no-repeat  h-[80vh]  bg-[url('https://artistic-codezeel.myshopify.com/cdn/shop/files/cms-banner-2.jpg?v=1652437717')]">
             <h1 className="text-7xl text-rose-900" 
-              >shihab sk we are going to tarvel</h1>
+              >paper craft</h1>
               <Fade cascade>
   <p>I enter first...</p>
   <p>...then comes my turn...</p>

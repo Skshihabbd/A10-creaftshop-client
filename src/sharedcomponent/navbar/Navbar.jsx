@@ -48,9 +48,9 @@ const Navbar = () => {
               <li className="lg:hover:bg-[#E5E6E0] text-2xl  lg:text-[18px] text-[#CEBDB3] lg:py-5  font lg:px-8">
                 <Link>Home</Link>
               </li>
-              <li className="lg:hover:bg-[#E5E6E0] text-2xl  lg:text-[18px] text-[#CEBDB3] lg:py-5  font lg:px-8">
+              {/* <li className="lg:hover:bg-[#E5E6E0] text-2xl  lg:text-[18px] text-[#CEBDB3] lg:py-5  font lg:px-8">
                 <Link to={`/cardview`}>View Details</Link>
-              </li>
+              </li> */}
               <li className="lg:hover:bg-[#E5E6E0] text-2xl  lg:text-[18px] text-[#CEBDB3] lg:py-5  font lg:px-8">
                 <Link to={'/useradddata'}>UserAddData</Link>
               </li>

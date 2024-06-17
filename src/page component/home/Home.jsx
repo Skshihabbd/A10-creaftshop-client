@@ -35,30 +35,16 @@ console.log(datas)
 {datas.map(data=><Categorycard key={data._id} data={data}></Categorycard>)}
      </div>
 
-      {/* <div>
+         <div  className="mb-7"  >
          <Minislider></Minislider>
-         </div>
-         <div>
+         </div >
+         <div className="mb-7" >
          <Minislider></Minislider>
-         </div>
-         <div>
+         </div  >
+         <div  className="mb-7" >
          <Minislider></Minislider>
-         </div>
-         <div>
-         <Minislider></Minislider>
-         </div>
-         <div>
-         <Minislider></Minislider>
-         </div>
-         <div>
-         <Minislider></Minislider>
-         </div>
-         <div>
-         <Minislider></Minislider>
-         </div>
-         <div>
-         <Minislider></Minislider>
-         </div> */}
+         </div  >
+        
 
       <Footer></Footer>
     </div>

@@ -52,7 +52,7 @@ setError(errors.message)
   };
 
   return (
-    <div className="border-2 border-x-cyan-400 w-full min-h-screen bg-[#F3F3F3]  ">
+    <div className="border-2 bg-[url('https://t4.ftcdn.net/jpg/05/49/86/39/360_F_549863991_6yPKI08MG7JiZX83tMHlhDtd6XLFAMce.jpg')] border-x-cyan-400 w-full min-h-screen bg-[#F3F3F3]   ">
 <Navbar></Navbar>
       {/* <Helmet>
         <title>Register</title>
@@ -62,12 +62,12 @@ setError(errors.message)
         <body><p>home|shihab</p></body>
       </Helmet> */}
       
-      <div className=" lg:w-2/4 mx-auto border-2 mt-8 bg-white">
+      <div className=" lg:w-2/4 mx-auto border-2 my-8 bg-slate-700 bg-opacity-25">
         <h1 className="text-center mb-10">Register your account</h1>
         <hr className="w-5/6 mx-auto mb-12" />
         <div className="px-16 ">
           <form onSubmit={handleSubmit(onSubmit)} className="relative">
-            <label For="texts">Your Name </label>
+            <label For="texts" className="text-white">Your Name </label>
             <br />
             <input
               className="w-full bg-[#F3F3F3] mb-4 h-10 outline-0"
@@ -79,7 +79,7 @@ setError(errors.message)
             />
             {errors.UserName && <span>This field is required</span>}
             <br />
-            <label For="urll">Photo Url </label>
+            <label For="urll" className="text-white">Photo Url </label>
             <br />
             <input
               className="w-full bg-[#F3F3F3] mb-4 h-10 outline-0"
@@ -97,7 +97,7 @@ setError(errors.message)
             />
             {errors.photourl && <span>{errors.photourl.message}</span>}
             <br />
-            <label For="emails">Email </label>
+            <label For="emails" className="text-white">Email </label>
             <br />
             <input
               className="w-full bg-[#F3F3F3] mb-4 h-10 outline-0"
@@ -116,7 +116,7 @@ setError(errors.message)
             />
             {errors.email && <span>{errors.email.message}</span>}
             <br />
-            <label For="passcode">Password</label>
+            <label For="passcode" className="text-white">Password</label>
             <br />
             <input
               className="w-full bg-[#F3F3F3] mb-4 h-10 outline-0"
@@ -162,12 +162,12 @@ setError(errors.message)
               id="check"
               {...register("checkbook", { required: true })}
             />
-            <label For="check">Accept Term & Conditions</label> <br />
+            <label For="check" className="text-white">Accept Term & Conditions</label> <br />
             {errors.checkbook && <span>This field is required</span>}
             <button className="w-full btn btn-primary my-3 ">Register</button>
           </form>
           <p>{error}</p>
-          <p className="text-center">
+          <p className="text-center text-white">
             Have an account
             <Link to="/signin" className="text-green-500">
               Login
