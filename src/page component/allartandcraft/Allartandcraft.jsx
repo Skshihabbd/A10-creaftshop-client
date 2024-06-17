@@ -23,8 +23,8 @@ console.log(loadedData)
         <th>Image</th>
         <th>Name</th>
         <th>Price</th>
-        <th>Stock</th>
         <th>Category</th>
+        <th>status</th>
       </tr>
     </thead>
   {loadedData.map(datas=><Allartandcraftcard key={datas._id} datas={datas}></Allartandcraftcard>)}

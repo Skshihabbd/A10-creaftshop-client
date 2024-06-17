@@ -26,9 +26,7 @@ const Navbar = () => {
           <li className="lg:hover:bg-[#E5E6E0]  font  lg:text-[18px] text-2xl lg:py-5 lg:px-8">
             <Link to={'/homepost'}>Home <br /> post data</Link>
           </li>
-          <li className="lg:hover:bg-[#E5E6E0]  font  lg:text-[18px] text-2xl lg:py-5 lg:px-8">
-            <Link to={'/'}>Home</Link>
-          </li>
+         
           <li
             id="rootmenu"
             className="lg:hover:bg-[#E5E6E0]  lg:text-[18px]   text-2xl lg:py-5 lg:px-8   font  "

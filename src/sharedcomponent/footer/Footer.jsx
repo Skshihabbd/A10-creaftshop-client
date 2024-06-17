@@ -29,7 +29,7 @@ const Footer = () => {
                 <Link>artistic@exampledemo.com</Link>
               </li>
 
-              {/*  */}
+              
             </ul>
           </li>
           <li>

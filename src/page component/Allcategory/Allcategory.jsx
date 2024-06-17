@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import CategoriCard from "./CategoriCard";
 import Navbar from "../../sharedcomponent/navbar/Navbar";
+import Footer from "../../sharedcomponent/footer/Footer";
 
 
 const Allcategory = () => {
@@ -9,10 +10,11 @@ const Allcategory = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div>
+            <div className="grid grid-cols-4 my-6">
             
             {datas.map(data=><CategoriCard key={data._id} data={data}></CategoriCard>)} 
-          </div>
+          </div> 
+          <Footer></Footer>
         </div>
     );
 };

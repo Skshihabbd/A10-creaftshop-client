@@ -121,35 +121,7 @@ const UpdateUser = () => {
                     className="w-full h-full  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   />
                 </div>
-                {/* <div className="col-span-full  sm:col-span-3">
-                  <label htmlFor="useremail" className="text-sm">
-                 user eamil
-                  </label>
-                  <input
-                  readOnly
-                    id="useremail"
-                    type="email"
-                    defaultValue={users?.email}
-
-                    name="name"
-                    placeholder="Enter user email"
-                    className="w-full h-full  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
-                  />
-                </div>
-                <div className="col-span-full sm:col-span-3">
-                  <label htmlFor="username" className="text-sm">
-                 User name
-                  </label>
-                  <input
-                   readOnly
-                   defaultValue={users?.displayName}
-                    id="username"
-                    type="text"
-                    name="username"
-                    placeholder="Enter user name"
-                    className="w-full h-full  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
-                  />
-                </div> */}
+               
                 <div className="col-span-full sm:col-span-3">
                   <label htmlFor="lastname" className="text-sm">
                     price
@@ -171,7 +143,8 @@ const UpdateUser = () => {
                     id="email"
                     type="text"
                     name="rating"
-                    placeholder="Enter rating"
+                    placeholder="Enter rating" 
+                    required
                     className="w-full h-full  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   />
                 </div>
@@ -184,6 +157,7 @@ const UpdateUser = () => {
                     id="email"
                     type="number"
                     name="processingtime"
+                    required
                     placeholder="Enter processing_time in days"
                     className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 h-full focus:dark:ring-violet-600 dark:border-gray-300"
                   />
@@ -191,7 +165,7 @@ const UpdateUser = () => {
                 <div className="col-span-full sm:col-span-3 ">
                   <select
                     onChange={handlestock}
-                    required
+                    required 
                     className="select select-primary w-full max-w-xs"
                   >
                     <option disabled selected>
