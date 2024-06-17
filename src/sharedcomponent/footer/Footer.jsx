@@ -29,23 +29,7 @@ const Footer = () => {
                 <Link>artistic@exampledemo.com</Link>
               </li>
 
-              <li>
-                <ul className="flex flex-row">
-                  <li>
-                   
-                    <Link>shihab</Link>
-                  </li>
-                  <li>
-                    <Link>shihab</Link>
-                  </li>
-                  <li>
-                    <Link>shihab</Link>
-                  </li>
-                  <li>
-                    <Link>shihab</Link>
-                  </li>
-                </ul>
-              </li>
+              {/*  */}
             </ul>
           </li>
           <li>
