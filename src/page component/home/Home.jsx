@@ -26,7 +26,7 @@ console.log(datas)
       <div>
         <TiTleMenu></TiTleMenu>
       </div>
-      <div className="">
+      <div >
         <Slider></Slider>
       </div>
       <h1 className="text-3xl font-bold ml-8 my-5">Craft Category</h1>
