@@ -62,7 +62,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/update/:id",
-        element: <UpdateUser></UpdateUser>,
+        element: <PrivetRoute>
+          <UpdateUser></UpdateUser>
+        </PrivetRoute>,
         loader: ({ params }) =>
           fetch(
             `https://server-site-wine.vercel.app/usersenddata/${params.id}`
@@ -70,7 +72,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/useradddata",
-        element: <UserAddData></UserAddData>,
+        element: <PrivetRoute>
+          <UserAddData></UserAddData>
+        </PrivetRoute>,
       },
       {
         path: "/allart",

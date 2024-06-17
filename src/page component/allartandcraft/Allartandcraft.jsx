@@ -1,6 +1,8 @@
 
 import { useLoaderData } from "react-router-dom";
 import Allartandcraftcard from "./Allartandcraftcard";
+import Navbar from "../../sharedcomponent/navbar/Navbar";
+import Footer from "../../sharedcomponent/footer/Footer";
 
 
 const Allartandcraft = () => {
@@ -11,6 +13,7 @@ console.log(loadedData)
 
     return (
         <div>
+          <Navbar></Navbar>
           <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
@@ -30,6 +33,7 @@ console.log(loadedData)
     
   </table>
 </div> 
+<Footer></Footer>
         </div>
     );
 };

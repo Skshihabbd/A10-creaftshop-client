@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
  import Custom from "../../sharedcomponent/custom/Custom";
 import SocialLogin from "../../page component/SocialLogin/SocialLogin";
 import Footer from "../../sharedcomponent/footer/Footer";
+import Navbar from "../../sharedcomponent/navbar/Navbar";
 
 const SignIn = () => {
    const{SignIn ,users}=Custom();
@@ -43,10 +44,8 @@ reset,
   };
   return (
     <div className="border-2 border-x-cyan-400 w-full min-h-screen bg-[#F3F3F3] bg-[url('https://t4.ftcdn.net/jpg/05/49/86/39/360_F_549863991_6yPKI08MG7JiZX83tMHlhDtd6XLFAMce.jpg')] py-10  ">
-      {/* <Helmet>
-                <title>realstate |login</title>
-            </Helmet>
-  <Navber></Navber> */}
+     
+  
       <div className="lg:w-2/4 mx-auto border-2 my-8 bg-slate-800 bg-opacity-25">
         <h1 className="text-center mb-10">Login your account</h1>
         <hr className="w-5/6 mx-auto mb-12" />
