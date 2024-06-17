@@ -58,6 +58,23 @@ const MyartsandCraftList = () => {
     if (category === "CardMaking") {
       const cardMake = state.filter((card) => card.categories === "CardMaking");
       setState(cardMake);
+      
+    }
+    else if(category === "Scrapbooking"){
+      const cardMake = state.filter((card) => card.categories === "Scrapbooking");
+      setState(cardMake);}
+    else if(category === "PaperQuillingorigami"){
+      const cardMake = state.filter((card) => card.categories === "PaperQuillingorigami");
+      setState(cardMake);}
+    else if(category === "GlassPainting"){
+      const cardMake = state.filter((card) => card.categories === "GlassPainting");
+      setState(cardMake);}
+    else if(category === "Lampworking"){
+      const cardMake = state.filter((card) => card.categories === "Lampworking");
+      setState(cardMake);}
+    else if(category === "GlassDyingStaining"){
+      const cardMake = state.filter((card) => card.categories === "GlassDyingStaining");
+      setState(cardMake);
     }
   };
   return (
@@ -65,7 +82,7 @@ const MyartsandCraftList = () => {
       <Navbar></Navbar>
       <div>
         <details className="dropdown">
-          <summary className="m-1 btn">open or close</summary>
+          <summary className="m-1 btn">filter</summary>
           <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
             <li
               onClick={() => {
@@ -86,7 +103,7 @@ const MyartsandCraftList = () => {
                 handleFilter("PaperQuillingorigami");
               }}
             >
-              Paper Quilling &origami<a></a>
+              <a>Paper Quilling &origami</a>
             </li>
             <li
               onClick={() => {
