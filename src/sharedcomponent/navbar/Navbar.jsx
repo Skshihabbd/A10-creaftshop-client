@@ -43,11 +43,9 @@ const Navbar = () => {
               className=" border-2 flex lg flex-col  invisible absolute lg:top-28 top-7 left-20 bg-slate-700 px-9 z-20 "
             >
               <li className=" text-2xl lg:hover:bg-[#E5E6E0] lg:text-[18px] text-[#CEBDB3] lg:py-5  font lg:px-8">
-                <Link>About</Link>
+                <Link to={'/about'}>About</Link>
               </li>
-              <li className="lg:hover:bg-[#E5E6E0] text-2xl  lg:text-[18px] text-[#CEBDB3] lg:py-5  font lg:px-8">
-                <Link>Home</Link>
-              </li>
+             
               {/* <li className="lg:hover:bg-[#E5E6E0] text-2xl  lg:text-[18px] text-[#CEBDB3] lg:py-5  font lg:px-8">
                 <Link to={`/cardview`}>View Details</Link>
               </li> */}

@@ -14,6 +14,7 @@ import Allartandcraft from "../../page component/allartandcraft/Allartandcraft";
 import MyartsandCraftList from "../../page component/myartandcraft/MyartsandCraftList";
 import PrivetRoute from "../../sharedcomponent/PrivetRoute";
 import Allcategory from "../../page component/Allcategory/Allcategory";
+import AboutUs from "../../page component/Allcategory/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
             <MyartsandCraftList></MyartsandCraftList>
           </PrivetRoute>
         ),
+      },
+      {
+        path:'/about',
+        element:<AboutUs></AboutUs>
       },
       {
         path: "/allcategory/:categori",
