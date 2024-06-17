@@ -7,7 +7,8 @@ const TiTleMenu = () => {
           <p className="text-3xl font-bold font text-white ">About</p>  
 <ul className=" flex justify-center text-2xl font text-[#DBD7D2] "><li><Link>Home</Link></li> ||
 <li>About</li>
-</ul>
+</ul> 
+
 
 
         </div>
