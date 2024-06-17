@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
  import Custom from "../../sharedcomponent/custom/Custom";
 import SocialLogin from "../../page component/SocialLogin/SocialLogin";
 import Footer from "../../sharedcomponent/footer/Footer";
-import Navbar from "../../sharedcomponent/navbar/Navbar";
+
 
 const SignIn = () => {
    const{SignIn ,users}=Custom();
