@@ -1,11 +1,14 @@
 import Swal from "sweetalert2";
 import Navbar from "../../sharedcomponent/navbar/Navbar";
 import { useState } from "react";
+import { FaSpinner } from "react-icons/fa6";
 
 import Footer from "../../sharedcomponent/footer/Footer";
 import TiTleMenu from "../../sharedcomponent/menu title/TiTleMenu";
 import { useLoaderData } from "react-router-dom";
+import axios from "axios";
 const UpdateUser = () => {
+  const [spin, setSpin] = useState(false);
   const userUpdate = useLoaderData();
   console.log(userUpdate);
 
@@ -28,7 +31,7 @@ const UpdateUser = () => {
     setdata(data);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -39,20 +42,17 @@ const UpdateUser = () => {
     const processingtime = form.processingtime.value;
 
     const details = form.details.value;
-    const photourl = form.photourl.value;
-    // const username=form.username.value
-    // const useremail=form.useremail.value
-
-    console.log(
-      name,
-      rating,
-      categories,
-      price,
-      processingtime,
-      stocks,
-      details,
-      photourl
+    const photourl = form.image.files[0];
+    const formData = new FormData();
+    formData.append("image", photourl);
+    setSpin(true);
+    const { data } = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      formData
     );
+
     const craftinfo = {
       name,
       rating,
@@ -60,7 +60,7 @@ const UpdateUser = () => {
       processingtime,
       stocks,
       details,
-      photourl,
+      photourl: data.data.display_url,
       categories,
       customize,
     };
@@ -75,6 +75,7 @@ const UpdateUser = () => {
       .then((res) => res.json())
       .then((info) => {
         if (info.acknowledged) {
+          setSpin(false);
           Swal.fire({
             title: "success!",
             text: "Do you want to continue",
@@ -121,7 +122,7 @@ const UpdateUser = () => {
                     className="w-full h-full  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   />
                 </div>
-               
+
                 <div className="col-span-full sm:col-span-3">
                   <label htmlFor="lastname" className="text-sm">
                     price
@@ -143,7 +144,7 @@ const UpdateUser = () => {
                     id="email"
                     type="text"
                     name="rating"
-                    placeholder="Enter rating" 
+                    placeholder="Enter rating"
                     required
                     className="w-full h-full  rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   />
@@ -165,10 +166,10 @@ const UpdateUser = () => {
                 <div className="col-span-full sm:col-span-3 ">
                   <select
                     onChange={handlestock}
-                    required 
+                    required
                     className="select select-primary w-full max-w-xs"
                   >
-                    <option disabled selected>
+                    <option disabled selected value="">
                       stockStatus
                     </option>
                     <option value={"In stock"}>- In stock</option>
@@ -193,19 +194,22 @@ const UpdateUser = () => {
                     PhotoUrl
                   </label>
                   <input
-                    id="text"
-                    type="text"
-                    name="photourl"
+                    id="image"
+                    required
+                    type="file"
+                    name="image"
+                    accept="image/*"
                     placeholder="Enter photo URL"
-                    className="w-full rounded-md focus:ring  h-full  focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
+                    className="w-full rounded-md ring  h-full  ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   />
                 </div>
                 <div className="col-span-full sm:col-span-3  ">
                   <select
+                    required
                     onChange={newsubmit}
                     className="select select-primary w-full max-w-xs"
                   >
-                    <option disabled selected>
+                    <option disabled selected value="">
                       Select a Category
                     </option>
                     <option value={"CardMaking"}>Card Making</option>
@@ -223,11 +227,11 @@ const UpdateUser = () => {
                 <div className="col-span-full  ">
                   <div className="col-span-full">
                     <select
-                      onChange={newdatasubmit}
                       required
+                      onChange={newdatasubmit}
                       className="select select-primary w-full max-w-xs"
                     >
-                      <option disabled selected>
+                      <option disabled selected value="">
                         customization
                       </option>
                       <option value={"yes"}>Yes</option>
@@ -238,7 +242,11 @@ const UpdateUser = () => {
               </div>
             </fieldset>
             <button className="btn btn-block bg-black text-yellow-500">
-              Add Coffee
+              {spin ? (
+                <FaSpinner className="animate-spin m-auto" />
+              ) : (
+                "Coffee add"
+              )}
             </button>
           </form>
         </section>

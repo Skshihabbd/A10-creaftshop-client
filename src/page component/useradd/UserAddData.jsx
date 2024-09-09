@@ -4,8 +4,11 @@ import { useState } from "react";
 import Custom from "../../sharedcomponent/custom/Custom";
 import Footer from "../../sharedcomponent/footer/Footer";
 import TiTleMenu from "../../sharedcomponent/menu title/TiTleMenu";
+import axios from "axios";
+import { FaSpinner } from "react-icons/fa";
 
 const UserAddData = () => {
+  const [spin, setSpin] = useState(false);
   const { users } = Custom();
   const [categories, setdata] = useState();
   const [customize, setnewData] = useState();
@@ -24,7 +27,7 @@ const UserAddData = () => {
     setdata(data);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -35,22 +38,20 @@ const UserAddData = () => {
     const processingtime = form.processingtime.value;
 
     const details = form.details.value;
-    const photourl = form.photourl.value;
+
     const username = form.username.value;
     const useremail = form.useremail.value;
-
-    console.log(
-      name,
-      rating,
-      categories,
-      price,
-      useremail,
-      username,
-      processingtime,
-      stocks,
-      details,
-      photourl
+    const photourl = form.image.files[0];
+    const formData = new FormData();
+    formData.append("image", photourl);
+    setSpin(true);
+    const { data } = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      formData
     );
+
     const craftinfo = {
       name,
       rating,
@@ -58,7 +59,7 @@ const UserAddData = () => {
       processingtime,
       stocks,
       details,
-      photourl,
+      photourl: data.data.display_url,
       categories,
       customize,
       useremail,
@@ -75,6 +76,10 @@ const UserAddData = () => {
       .then((res) => res.json())
       .then((info) => {
         if (info.acknowledged) {
+          setSpin(false);
+          setStocks("");
+          setdata("");
+          setnewData("");
           Swal.fire({
             title: "success!",
             text: "Do you want to continue",
@@ -84,6 +89,7 @@ const UserAddData = () => {
           form.reset();
         }
       });
+    form.reset();
   };
   return (
     <div>
@@ -192,7 +198,7 @@ const UserAddData = () => {
                     required
                     className="select select-primary w-full max-w-xs"
                   >
-                    <option disabled selected>
+                    <option selected value="">
                       stockStatus
                     </option>
                     <option value={"In stock"}>- In stock</option>
@@ -217,19 +223,22 @@ const UserAddData = () => {
                     PhotoUrl
                   </label>
                   <input
-                    id="text"
-                    type="text"
-                    name="photourl"
+                    id="image"
+                    required
+                    type="file"
+                    name="image"
+                    accept="image/*"
                     placeholder="Enter photo URL"
-                    className="w-full rounded-md focus:ring  h-full  focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
+                    className="w-full rounded-md ring  h-full  ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   />
                 </div>
                 <div className="col-span-full sm:col-span-3  ">
                   <select
+                    required
                     onChange={newsubmit}
                     className="select select-primary w-full max-w-xs"
                   >
-                    <option disabled selected>
+                    <option selected value="">
                       Select a Category
                     </option>
                     <option value={"CardMaking"}>Card Making</option>
@@ -251,7 +260,7 @@ const UserAddData = () => {
                       required
                       className="select select-primary w-full max-w-xs"
                     >
-                      <option disabled selected>
+                      <option selected value="">
                         customization
                       </option>
                       <option value={"yes"}>Yes</option>
@@ -262,11 +271,16 @@ const UserAddData = () => {
               </div>
             </fieldset>
             <button className="btn btn-block bg-black text-yellow-500">
-              Add Coffee
+              {spin ? (
+                <FaSpinner className="animate-spin m-auto" />
+              ) : (
+                "Add Coffee"
+              )}
             </button>
           </form>
         </section>
       </div>
+
       <Footer></Footer>
     </div>
   );

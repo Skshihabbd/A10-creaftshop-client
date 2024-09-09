@@ -4,6 +4,7 @@ import { useState } from "react";
 import Custom from "../../sharedcomponent/custom/Custom";
 import Footer from "../../sharedcomponent/footer/Footer";
 import TiTleMenu from "../../sharedcomponent/menu title/TiTleMenu";
+import axios from "axios";
 const HomepostData = () => {
   const { users } = Custom();
   const [categories, setdata] = useState();
@@ -23,7 +24,7 @@ const HomepostData = () => {
     setdata(data);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -34,21 +35,17 @@ const HomepostData = () => {
     const processingtime = form.processingtime.value;
 
     const details = form.details.value;
-    const photourl = form.photourl.value;
+    const photourl = form.image.files[0];
     const username = form.username.value;
     const useremail = form.useremail.value;
+    const formData = new FormData();
+    formData.append("image", photourl);
 
-    console.log(
-      name,
-      rating,
-      categories,
-      price,
-      useremail,
-      username,
-      processingtime,
-      stocks,
-      details,
-      photourl
+    const { data } = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      formData
     );
     const craftinfoitem = {
       name,
@@ -57,11 +54,14 @@ const HomepostData = () => {
       processingtime,
       stocks,
       details,
-      photourl,
+      photourl: data.data.display_url,
       categories,
       customize,
     };
     console.log(craftinfoitem);
+
+    console.log(data.data.display_url);
+
     fetch("https://server-site-wine.vercel.app/adminsenddata", {
       method: "POST",
       headers: {
@@ -187,7 +187,7 @@ const HomepostData = () => {
                     required
                     className="select select-primary w-full max-w-xs"
                   >
-                    <option disabled selected>
+                    <option disabled selected value="">
                       stockStatus
                     </option>
                     <option value={"In stock"}>- In stock</option>
@@ -211,20 +211,24 @@ const HomepostData = () => {
                   <label htmlFor="email" className="text-sm">
                     PhotoUrl
                   </label>
+
                   <input
-                    id="text"
-                    type="text"
-                    name="photourl"
+                    id="image"
+                    required
+                    type="file"
+                    name="image"
+                    accept="image/*"
                     placeholder="Enter photo URL"
-                    className="w-full rounded-md focus:ring  h-full  focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
+                    className="w-full rounded-md ring  h-full  ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
                   />
                 </div>
                 <div className="col-span-full sm:col-span-3  ">
                   <select
+                    required
                     onChange={newsubmit}
                     className="select select-primary w-full max-w-xs"
                   >
-                    <option disabled selected>
+                    <option disabled selected value="">
                       Select a Category
                     </option>
                     <option value={"Card Making"}>Card Making</option>
@@ -246,7 +250,7 @@ const HomepostData = () => {
                       required
                       className="select select-primary w-full max-w-xs"
                     >
-                      <option disabled selected>
+                      <option disabled selected value="">
                         customization
                       </option>
                       <option value={"yes"}>Yes</option>
