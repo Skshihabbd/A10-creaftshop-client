@@ -3,7 +3,7 @@
 const PrivetRoute = () => {
     return (
         <div>
-{/*           shihab   */}
+{/*      and     shihab   */}
         </div>
     );
 };
